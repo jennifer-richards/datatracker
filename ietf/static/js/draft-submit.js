@@ -1,3 +1,4 @@
+import $ from 'jquery';
 $(function () {
     // fill in submitter info when an author button is clicked
     $("form.idsubmit button.author")

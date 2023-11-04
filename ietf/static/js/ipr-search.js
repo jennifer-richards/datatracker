@@ -1,3 +1,4 @@
+import $ from 'jquery';
 $(document)
     .ready(function () {
         // hack the "All States" check box

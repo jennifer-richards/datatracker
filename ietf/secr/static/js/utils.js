@@ -3,6 +3,8 @@
 // set X-CSRFToken AJAX request header
 // from https://docs.djangoproject.com/en/dev/ref/contrib/csrf/#ajax
 
+import $ from 'jquery';
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {

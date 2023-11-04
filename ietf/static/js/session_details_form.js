@@ -2,6 +2,7 @@
  *
  * JS support for the SessionDetailsForm
  * */
+import $ from 'jquery';
 (function () {
     'use strict';
 

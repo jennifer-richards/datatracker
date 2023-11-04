@@ -1,4 +1,5 @@
 // Copyright The IETF Trust 2021, All Rights Reserved
+import $ from 'jquery';
 (
     function () {
         'use strict';

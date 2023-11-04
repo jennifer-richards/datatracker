@@ -1,3 +1,4 @@
+import $ from 'jquery';
 module.exports = function (list) {
   var item, text, columns, searchString, customSearch
 
