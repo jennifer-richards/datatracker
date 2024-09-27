@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import {
     default as List
 } from "list.js";

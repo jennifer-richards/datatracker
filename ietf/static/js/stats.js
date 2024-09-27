@@ -1,3 +1,4 @@
+import $ from 'jquery';
 $(document).ready(function () {
     if (window.chartConf) {
         window.chartConf.credits = {

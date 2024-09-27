@@ -1,3 +1,4 @@
+import $ from 'jquery';
 jQuery(document)
     .ready(function () {
         function reportServerError(xhr, textStatus, error) {

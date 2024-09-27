@@ -1,3 +1,4 @@
+import $ from 'jquery';
 $(document)
     .ready(function () {
         $("[name=rule_type]")
