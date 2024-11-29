@@ -1,3 +1,4 @@
+import $ from 'jquery';
 window.agenda_filter; // public interface
 window.agenda_filter_for_testing; // methods to be accessed for automated testing
 

@@ -1,3 +1,4 @@
+import $ from 'jquery';
 local_js = function () {
     const sortable_list_id = 'authors-list'; // id of the container element for Sortable
     const prefix = 'author'; // formset prefix - must match the prefix in the edit_authors() view

@@ -1,6 +1,7 @@
 /**
 * Disable Submit Button on Form Submit
 */
+import $ from 'jquery';
 function onLoginSubmit (ev) {
     const submitBtn = document.querySelector('#dt-login-form button[type=submit]')
     if (submitBtn) {
