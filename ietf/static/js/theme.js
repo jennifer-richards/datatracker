@@ -7,6 +7,7 @@
  * https://github.com/twbs/bootstrap/blob/main/site/static/docs/5.3/assets/js/color-modes.js
  */
 
+import $ from 'jquery';
 (() => {
   'use strict'
 

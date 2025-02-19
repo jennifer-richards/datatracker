@@ -1,6 +1,7 @@
 // Taken from django-password-strength, with changes to use the bower-managed zxcvbn.js The
 // bower-managed zxcvbn.js is kept up-to-date to a larger extent than the copy packaged with
 // the django-password-strength component.
+import $ from 'jquery';
 (function ($, window, document, undefined) {
     window.djangoPasswordStrength = {
         config: {
