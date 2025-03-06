@@ -1,3 +1,4 @@
+import $ from 'jquery';
 var attachmentWidget = {
     button: null,
     config: {},
