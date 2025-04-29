@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import {
     Tooltip as Tooltip,
     // Button as Button,

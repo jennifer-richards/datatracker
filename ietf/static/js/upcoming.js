@@ -1,3 +1,4 @@
+import $ from 'jquery';
 var filtered_event_list = []; // currently visible list
 var display_events = []; // filtered events, processed for calendar display
 var event_calendar; // handle on the calendar object

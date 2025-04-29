@@ -8,6 +8,7 @@
  names. Time zone can be changed via the select input or by calling the use() method with
  the name of a time zone (or 'local' to guess the user's local timezone).
  */
+import $ from 'jquery';
 (function () {
     'use strict';
 
