@@ -1,4 +1,4 @@
-# Copyright The IETF Trust 2024, All Rights Reserved
+# Copyright The IETF Trust 2024-2025, All Rights Reserved
 #
 # Celery task definitions
 #
@@ -25,7 +25,7 @@ from .expire import (
     send_expire_warning_for_draft,
 )
 from .lastcall import get_expired_last_calls, expire_last_call
-from .models import Document, NewRevisionDocEvent
+from .models import Document, NewRevisionDocEvent, StoredObject
 from .utils import (
     generate_idnits2_rfc_status,
     generate_idnits2_rfcs_obsoleted,
