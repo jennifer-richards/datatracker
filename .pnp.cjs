@@ -93,6 +93,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["shepherd.js", "npm:11.2.0"],\
             ["slugify", "npm:1.6.6"],\
             ["sortablejs", "npm:1.15.2"],\
+            ["tom-select", "npm:2.4.3"],\
             ["vanillajs-datepicker", "npm:1.3.4"],\
             ["vite", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.5.3"],\
             ["vue", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:3.4.21"],\
@@ -1155,6 +1156,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@npmcli/move-file", "npm:2.0.0"],\
             ["mkdirp", "npm:1.0.4"],\
             ["rimraf", "npm:3.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@orchidjs/sifter", [\
+        ["npm:1.1.0", {\
+          "packageLocation": "./.yarn/cache/@orchidjs-sifter-npm-1.1.0-8bf427f63a-affe38c1b9.zip/node_modules/@orchidjs/sifter/",\
+          "packageDependencies": [\
+            ["@orchidjs/sifter", "npm:1.1.0"],\
+            ["@orchidjs/unicode-variants", "npm:1.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@orchidjs/unicode-variants", [\
+        ["npm:1.1.2", {\
+          "packageLocation": "./.yarn/cache/@orchidjs-unicode-variants-npm-1.1.2-0361cdaa63-2b643dfbc6.zip/node_modules/@orchidjs/unicode-variants/",\
+          "packageDependencies": [\
+            ["@orchidjs/unicode-variants", "npm:1.1.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8377,6 +8397,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["shepherd.js", "npm:11.2.0"],\
             ["slugify", "npm:1.6.6"],\
             ["sortablejs", "npm:1.15.2"],\
+            ["tom-select", "npm:2.4.3"],\
             ["vanillajs-datepicker", "npm:1.3.4"],\
             ["vite", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.5.3"],\
             ["vue", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:3.4.21"],\
@@ -9057,6 +9078,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/token-stream-npm-1.0.0-b6bc01bff8-e8adb56f31.zip/node_modules/token-stream/",\
           "packageDependencies": [\
             ["token-stream", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["tom-select", [\
+        ["npm:2.4.3", {\
+          "packageLocation": "./.yarn/cache/tom-select-npm-2.4.3-d87b1a7c53-85f01549d6.zip/node_modules/tom-select/",\
+          "packageDependencies": [\
+            ["tom-select", "npm:2.4.3"],\
+            ["@orchidjs/sifter", "npm:1.1.0"],\
+            ["@orchidjs/unicode-variants", "npm:1.1.2"]\
           ],\
           "linkType": "HARD"\
         }]\

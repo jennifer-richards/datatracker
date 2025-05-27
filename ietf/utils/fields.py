@@ -328,6 +328,152 @@ class SearchableField(forms.MultipleChoiceField):
         return super().has_changed(initial, data)
 
 
+# todo multiple vs single as separate widgets
+class TomSelectMultiple(forms.SelectMultiple):
+    class Media:
+        css = {"all": ("ietf/css/tom-select-search.css",)}
+        js = ("ietf/js/tom-select-search.js",)
+
+
+class TomSearchableField(forms.MultipleChoiceField):
+    widget = TomSelectMultiple
+    model = None  # type:Optional[Type[models.Model]]
+    max_entries = None  # type: Optional[int]
+    min_search_length = None  # type: Optional[int]
+    default_hint_text = "Type a value to search"
+
+    def __init__(self, hint_text=None, *args, **kwargs):
+        assert self.model is not None
+        self.hint_text = hint_text if hint_text is not None else self.default_hint_text
+        # Pop max_entries out of kwargs - this distinguishes passing 'None' from
+        # not setting the parameter at all.
+        if "max_entries" in kwargs:
+            self.max_entries = kwargs.pop("max_entries")
+        if "min_search_length" in kwargs:
+            self.min_search_length = kwargs.pop("min_search_length")
+
+        super().__init__(*args, **kwargs)
+
+        self.widget.attrs["class"] = "tom-select-field"
+        self.widget.attrs["placeholder"] = self.hint_text
+        if self.max_entries is not None:
+            self.widget.attrs["data-max-entries"] = self.max_entries
+        if self.min_search_length is not None:
+            self.widget.attrs["data-min-search-length"] = self.min_search_length
+
+    def make_select2_data(self, model_instances):
+        """Get select2 data items
+
+        Should return an array of dicts, each with at least 'id' and 'text' keys.
+        """
+        raise NotImplementedError("Must implement make_select2_data")
+
+    def ajax_url(self):
+        """Get the URL for AJAX searches
+
+        Doing this in the constructor is difficult because the URL patterns may not have been
+        fully constructed there yet.
+        """
+        raise NotImplementedError("Must implement ajax_url")
+
+    def get_model_instances(self, item_ids):
+        """Get model instances corresponding to item identifiers in select2 field value
+
+        Default implementation expects identifiers to be model pks. Return value is an iterable.
+        """
+        return self.model.objects.filter(pk__in=item_ids)
+
+    def validate_pks(self, pks):
+        """Validate format of PKs
+
+        Base implementation does nothing, but subclasses may override if desired.
+        Should raise a forms.ValidationError in case of a failed validation.
+        """
+        pass
+
+    def describe_failed_pks(self, failed_pks):
+        """Format error message to display when non-existent PKs are referenced"""
+        return (
+            "Could not recognize the following {model_name}s: {pks}. "
+            "You can only input {model_name}s already registered in the Datatracker.".format(
+                pks=", ".join(failed_pks), model_name=self.model.__name__.lower()
+            )
+        )
+
+    def prepare_value(self, value):
+        if isinstance(value, list):
+            if len(value) == 0:
+                value = None
+            elif len(value) == 1:
+                value = value[0]
+            else:
+                if not isinstance(value[0], self.model):
+                    value = self.get_model_instances(value)
+        if isinstance(value, int):
+            value = str(value)
+        if isinstance(value, str):
+            if value == "":
+                value = self.model.objects.none()
+            else:
+                value = self.get_model_instances([value])
+        if isinstance(value, self.model):
+            value = [value]
+
+        pre = self.make_select2_data(value)
+        for d in pre:
+            if isinstance(value, list):
+                d["selected"] = any([v.pk == d["id"] for v in value])
+            elif value:
+                d["selected"] = (
+                    value.exists() and value.filter(pk__in=[d["id"]]).exists()
+                )
+        self.widget.attrs["data-pre"] = json.dumps(list(pre))
+
+        # doing this in the constructor is difficult because the URL
+        # patterns may not have been fully constructed there yet
+        ajax_url = self.ajax_url()
+        if ajax_url is not None:
+            self.widget.attrs["data-select2-ajax-url"] = ajax_url
+
+        result = value
+        return result
+
+    def clean(self, pks):
+        if pks is None:
+            return None
+
+        try:
+            objs = self.model.objects.filter(pk__in=pks)
+        except ValueError as e:
+            raise forms.ValidationError("Unexpected field value; {}".format(e))
+
+        found_pks = [str(o.pk) for o in objs]
+        failed_pks = [x for x in pks if x not in found_pks]
+        if failed_pks:
+            raise forms.ValidationError(self.describe_failed_pks(failed_pks))
+
+        if self.max_entries != None and len(objs) > self.max_entries:
+            raise forms.ValidationError(
+                "You can select at most {} {}.".format(
+                    self.max_entries,
+                    "entry" if self.max_entries == 1 else "entries",
+                )
+            )
+
+        return objs.first() if self.max_entries == 1 else objs
+
+    def has_changed(self, initial, data):
+        # When max_entries == 1, we behave like a ChoiceField so initial will likely be a single
+        # value. Make it a list so MultipleChoiceField's has_changed() can work with it.
+        if (
+            initial is not None
+            and self.max_entries == 1
+            and not isinstance(initial, (list, tuple))
+        ):
+            initial = [initial]
+        return super().has_changed(initial, data)
+
+
 class IETFJSONField(jsonfield.fields.forms.JSONField):
     def __init__(self, *args, empty_values=jsonfield.fields.forms.JSONField.empty_values,
                  accepted_empty_values=None, **kwargs):

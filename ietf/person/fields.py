@@ -19,7 +19,7 @@ from django.utils.html import escape
 import debug                            # pyflakes:ignore
 
 from ietf.person.models import Email, Person
-from ietf.utils.fields import SearchableField
+from ietf.utils.fields import TomSearchableField
 
 
 def select2_id_name(objs):
@@ -47,7 +47,8 @@ def select2_id_name_json(objs):
     return json.dumps(select2_id_name(objs))
 
 
-class SearchablePersonsField(SearchableField):
+# todo either finish migration to TomSearchableField or add an alternative Field class
+class SearchablePersonsField(TomSearchableField):
     """Server-based multi-select field for choosing
     persons/emails or just persons using select2.js.
 
