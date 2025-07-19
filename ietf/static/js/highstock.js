@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import Highcharts from "highcharts/highstock";
 
 import Highcharts_Exporting from "highcharts/modules/exporting";
