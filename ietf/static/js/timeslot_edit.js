@@ -1,4 +1,5 @@
 // create a namespace for local JS
+import $ from 'jquery';
 timeslotEdit = (function () {
     let deleteModal;
     let timeslotTableBody = document.querySelector('#timeslot-table tbody');
