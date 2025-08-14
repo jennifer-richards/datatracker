@@ -1,4 +1,5 @@
 // Copyright The IETF Trust 2015-2021, All Rights Reserved
+import $ from 'jquery';
 /* global alert */
 var ietf_sessions; // public interface
 
