@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import {
     Datepicker
 } from 'vanillajs-datepicker';

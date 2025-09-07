@@ -15,6 +15,7 @@ import "bootstrap/js/dist/tab";
 import "bootstrap/js/dist/tooltip";
 import { debounce } from 'lodash-es';
 import jquery from "jquery";
+import $ from 'jquery';
 
 window.$ = window.jQuery = jquery;
 if (!process.env.BUILD_DEPLOY) {

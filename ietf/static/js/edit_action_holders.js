@@ -1,3 +1,4 @@
+import $ from 'jquery';
 local_js = function () {
     let select2_elem = $('#id_action_holders');
     let role_ids = select2_elem.data('role-ids');

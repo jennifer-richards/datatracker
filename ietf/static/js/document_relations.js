@@ -1,3 +1,4 @@
+import $ from 'jquery';
 const style = getComputedStyle(document.body);
 const font_size = parseFloat(style.fontSize);
 const line_height = font_size + 2;

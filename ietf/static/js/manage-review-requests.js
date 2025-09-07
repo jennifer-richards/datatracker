@@ -1,3 +1,4 @@
+import $ from 'jquery';
 /* global $ */
 $(function () {
   'use strict'
